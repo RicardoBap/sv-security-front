@@ -1,0 +1,127 @@
+<div class="container" >
+
+ <h1>Lançamentos</h1>
+
+  <!-- <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start center" fxLayoutAlign.gt-sm="center start">
+    <div fxFlex="50%" fxFlex.gt-sm="75%">Item 1</div>
+    <div fxFlex="50%" fxFlex.gt-sm="25%">Item 2</div>
+  </div> -->
+
+  <form class="width-form">
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Descrição</mat-label>
+      <input matInput placeholder="7 tradição" value="">
+    </mat-form-field>
+
+    
+    <mat-form-field appearance="fill" >
+      <mat-label style="display: block">Data vencimento de</mat-label>
+      <input matInput [matDatepicker]="picker1" >
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+    até
+    <mat-form-field appearance="fill">
+      <mat-label>Data vencimento até</mat-label>
+      <input matInput [matDatepicker]="picker2">
+
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+  
+  </form>
+
+  <button mat-raised-button color="primary" type="submit">Pesquisar</button>
+
+  <div class="container-table mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource" >
+
+      <!-- Tipo Column -->
+      <ng-container matColumnDef="tipo">
+        <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <span class="responsive-label">Tipo: </span>
+          {{element.tipo}} 
+        </mat-cell>
+      </ng-container>
+
+      <!-- Descrição Column -->
+      <ng-container matColumnDef="descricao">
+        <mat-header-cell *matHeaderCellDef> Descrição </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <span class="responsive-label">Descrição:</span>
+          {{element.descricao}} 
+        </mat-cell>
+      </ng-container>
+
+      <!-- dataVencimento Column -->
+      <ng-container matColumnDef="dataVencimento">
+        <mat-header-cell *matHeaderCellDef> Data Venc. </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <span class="responsive-label">Data Venc.:</span>
+          {{element.dataVencimento}} 
+        </mat-cell>
+      </ng-container>
+
+      <!-- dataPagamento Column -->
+      <ng-container matColumnDef="dataPagamento">
+        <mat-header-cell *matHeaderCellDef> Data Pagto. </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <span class="responsive-label">Data Pagto:</span>
+          {{element.dataPagamento}} 
+        </mat-cell>
+      </ng-container>
+
+      <!-- Valor Column -->
+      <ng-container matColumnDef="valor">
+        <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <span class="responsive-label">Valor:</span>
+          {{element.valor}} 
+        </mat-cell>
+      </ng-container>
+
+       <!-- Pessoa Column -->
+       <ng-container matColumnDef="pessoa">
+        <mat-header-cell *matHeaderCellDef> Pessoa </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <span class="responsive-label">Pessoa:</span>
+          {{element.pessoa}} 
+        </mat-cell>
+      </ng-container>
+
+      <!-- Ação Column -->
+      <ng-container matColumnDef="acao" >
+        <td mat-header-cell *matHeaderCellDef style="width: 80px;">  </td>
+        <th *matCellDef="let element" > 
+          <span class="responsive-label"> </span>
+          <button mat-icon-button color="warn" #tooltip="matTooltip"
+            matTooltip="Excluir"
+            [matTooltipPosition]="position.value"
+            matTooltipHideDelay="500">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" #tooltip="matTooltip"
+            matTooltip="Editar"
+            [matTooltipPosition]="position.value"
+            matTooltipHideDelay="500">
+            <mat-icon>edit</mat-icon>
+          </button>          
+        </th>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[2, 4]" showFirstLastButtons></mat-paginator>
+  </div>
+
+  <a mat-raised-button color="primary" routerLink=".">Novo lançamento</a>
+  <p>margim</p>  
+
+</div>
+
+   
+
+

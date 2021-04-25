@@ -1,0 +1,43 @@
+<!-- <div fxLayout="row" fxLayoutAlign="space-between"> -->
+
+<div>
+  <mat-toolbar color="primary">
+    <button class="example-icon" mat-icon-button (click)="sidenav.open()" >  
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <!-- <button  class="example-icon" mat-icon-button aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button> -->
+    <span>My App</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-toolbar>
+
+
+  <mat-sidenav-container class="example-container" (backdropClick)="close('backdrop')" >
+    <mat-sidenav #sidenav (keydown.escape)="close('escape')" disableClose>
+      <p style="text-align: center;"><button mat-button (click)="close('toggle button')">Toggle</button></p>
+      <p>Lançamentos</p>
+    </mat-sidenav>
+
+    <!-- <mat-sidenav-content>
+      <p><button mat-button (click)="sidenav.open()">Open</button></p>
+      <p>Closed due to: {{reason}}</p>
+    </mat-sidenav-content> -->
+  </mat-sidenav-container>
+
+
+</div>
+
+
+
+ 
+
+  
+

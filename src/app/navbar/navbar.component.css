@@ -1,0 +1,22 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+
+
+
+.mat-drawer {
+  background-color: #fff;
+  width: 150px;
+  color: rgba(0,0,0,.87);
+  position: fixed;
+}
+
+.mat-drawer-container {
+  position: initial; /* <-------- important */
+  z-index: 1;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  display: block;
+  overflow: hidden;
+}
