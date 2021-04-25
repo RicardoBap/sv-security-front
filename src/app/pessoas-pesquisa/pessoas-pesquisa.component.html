@@ -1,0 +1,88 @@
+<div class="container">
+
+  <mat-card>
+
+    <h1>Pessoas</h1>
+
+    <form class="width-form">
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="" value="">
+      </mat-form-field>    
+    </form>
+  
+    <button mat-raised-button color="primary" type="submit">Pesquisar</button>
+
+
+    <div class="container-table mat-elevation-z8">
+      <mat-table #table [dataSource]="dataSource" >
+  
+        <!-- Tipo Column -->
+        <ng-container matColumnDef="nome">
+          <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+          <mat-cell *matCellDef="let element"> 
+            <span class="responsive-label">Nome: </span>
+            {{element.nome}} 
+          </mat-cell>
+        </ng-container>
+  
+        <!-- Descrição Column -->
+        <ng-container matColumnDef="telefone">
+          <mat-header-cell *matHeaderCellDef> Telefone </mat-header-cell>
+          <mat-cell *matCellDef="let element"> 
+            <span class="responsive-label">Telefone:</span>
+            {{element.telefone}} 
+          </mat-cell>
+        </ng-container>
+  
+        <!-- dataVencimento Column -->
+        <ng-container matColumnDef="encargo">
+          <mat-header-cell *matHeaderCellDef> Encargo </mat-header-cell>
+          <mat-cell *matCellDef="let element"> 
+            <span class="responsive-label">Encargo</span>
+            {{element.encargo}} 
+          </mat-cell>
+        </ng-container>
+  
+        <!-- dataPagamento Column -->
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+          <mat-cell *matCellDef="let element"> 
+            <span class="responsive-label">Status</span>
+            {{element.status}} 
+          </mat-cell>
+        </ng-container>        
+  
+        <!-- Ação Column -->
+        <ng-container matColumnDef="acao" >
+          <td mat-header-cell *matHeaderCellDef style="width: 80px;">  </td>
+          <th *matCellDef="let element" > 
+            <span class="responsive-label"> </span>
+            <button mat-icon-button color="warn" #tooltip="matTooltip"
+              matTooltip="Excluir"
+              [matTooltipPosition]="position.value"
+              matTooltipHideDelay="500">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" #tooltip="matTooltip"
+              matTooltip="Editar"
+              [matTooltipPosition]="position.value"
+              matTooltipHideDelay="500">
+              <mat-icon>edit</mat-icon>
+            </button>          
+          </th>
+        </ng-container>
+  
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+  
+      <mat-paginator [pageSizeOptions]="[2, 4]" showFirstLastButtons></mat-paginator>
+    </div>
+  
+    <a mat-raised-button color="primary" routerLink=".">Novo lançamento</a>
+    <p>margim</p>  
+
+  </mat-card>
+
+</div>
