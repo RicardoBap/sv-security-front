@@ -1,0 +1,22 @@
+.width-form {
+  /* min-width: 150px;
+  max-width: 500px; */
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.calendar {
+  width: 250px;
+}
+
+mat-form-field {
+  margin-bottom: 0 !important;
+}
+
+a {
+  color: #337ab7;
+  text-decoration: none;
+}

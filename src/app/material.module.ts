@@ -14,6 +14,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
 
 @NgModule({
   imports: [],
@@ -30,6 +33,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatTooltipModule,
     MatToolbarModule,
     MatSidenavModule,
+    MatSelectModule,
+    MatButtonToggleModule,
 
     MatDatepickerModule,
     MatNativeDateModule
