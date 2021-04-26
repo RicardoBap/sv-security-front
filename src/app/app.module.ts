@@ -10,12 +10,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material.module';
 
 import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { FormsModule } from '@angular/forms';
+import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     LancamentosPesquisaComponent,    
     PessoasPesquisaComponent,
-    LancamentoCadastroComponent
+    LancamentoCadastroComponent,
+    PessoaCadastroComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +36,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     FlexLayoutModule,
     CurrencyMaskModule,
+    NgxMaskModule.forRoot(),
 
     MaterialModule   
   ],

@@ -1,0 +1,65 @@
+<div class="container">
+
+  <mat-card>
+
+    <h1>Nova pessoa</h1>
+
+    <form>
+
+      <div>
+        <mat-form-field class="full-width">
+          <mat-label>Nome</mat-label>
+          <input matInput placeholder="Ricardo" value="" required >
+        </mat-form-field>
+      </div> 
+
+      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" fxLayoutGap="30px" >
+        <mat-form-field fxFlex="70" class="full-width">
+          <mat-label>Logradouro</mat-label>
+          <input matInput placeholder="Av. Paulista" value="" >
+        </mat-form-field>
+
+        <mat-form-field fxFlex="30" class="full-width">
+          <mat-label>Número</mat-label>
+          <input matInput placeholder="0000" value="" >
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" fxLayoutGap="30px" >
+        <mat-form-field fxFlex="33" class="full-width">
+          <mat-label>Complemento</mat-label>
+          <input matInput placeholder="apto. 100" value="" >
+        </mat-form-field>
+
+        <mat-form-field fxFlex="33" class="full-width">
+          <mat-label>Bairro</mat-label>
+          <input matInput placeholder="Bela Vista" value="" >
+        </mat-form-field>
+
+        <mat-form-field fxFlex="33" class="full-width">
+          <mat-label>Tefefone</mat-label>
+          <input matInput mask="(00)00000-0000" placeholder="(00) 00000-0000" value="" required>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" fxLayoutGap="30px" >
+        <mat-form-field fxFlex="50" class="full-width">
+          <mat-label>Cidade</mat-label>
+          <input matInput placeholder="São Paulo" value="" >
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50" class="full-width">
+          <mat-label>Encargo</mat-label>
+          <input matInput placeholder="Secretário" value="" required >
+        </mat-form-field>
+      </div>
+
+    </form>
+
+    <button mat-raised-button color="primary" style="margin-right: 10px;">Salvar</button>
+    <button mat-stroked-button color="primary" style="margin-right: 10px;">Novo</button>
+    <a href="javascript:;">Voltar para a pesquisa</a>  
+
+  </mat-card>
+
+</div>
