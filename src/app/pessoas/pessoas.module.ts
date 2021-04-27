@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
-import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
-import { MaterialModule } from '../material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
-import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { MaterialModule } from '../core/material/material.module';
+
+import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
+import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 
 @NgModule({
   declarations: [
@@ -19,10 +21,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
     FormsModule,
     ReactiveFormsModule,
+    MaterialModule,
 
-    NgxMaskModule.forRoot(),
-
-    MaterialModule
+    NgxMaskModule.forRoot()    
   ],
   exports: [
     PessoasPesquisaComponent,

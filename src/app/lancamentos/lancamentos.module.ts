@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
-import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
-import { MaterialModule } from '../material.module';
-import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { MaterialModule } from '../core/material/material.module';
+
+import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
+import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 
 @NgModule({
   declarations: [
@@ -19,14 +22,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
     FormsModule,
     ReactiveFormsModule,
+    MaterialModule,
 
-    CurrencyMaskModule,
-
-    MaterialModule
+    CurrencyMaskModule    
   ],
   exports: [
     LancamentosPesquisaComponent,
     LancamentoCadastroComponent
-  ]
+  ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },    
+  ],
 })
 export class LancamentosModule { }
