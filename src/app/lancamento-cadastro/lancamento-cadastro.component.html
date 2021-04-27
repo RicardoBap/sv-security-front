@@ -1,31 +1,38 @@
 <div class="container">  
 
   <mat-card>
+  
     <h1>Novo lançamento</h1>
 
-   <form>
+    <form [formGroup]="lancamentoForm" (ngSubmit)="submit()" >
 
-      <mat-button-toggle-group appearance="legacy" [(ngModel)]="tipos" name="tipos" style="margin-bottom: 10px;">
-        <mat-button-toggle value="RECEITA">Receita</mat-button-toggle>
-        <mat-button-toggle value="DESPESA">Despesa</mat-button-toggle>
-      </mat-button-toggle-group>
-      <!-- <p>Chosen value is {{ tipos }}</p>  -->
+      <div style="margin-bottom: 10px;"> 
+        <mat-button-toggle-group appearance="legacy" formControlName="tipos" 
+          (change)="tipoLabel=$event.value" [value]="tipoLabel" >
+          <mat-button-toggle value="RECEITA"><b>Receita</b></mat-button-toggle>
+          <mat-button-toggle value="DESPESA"><b>Despesa</b></mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
 
       <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start center" fxLayoutGap="30px"> 
         <mat-form-field  fxFlex="25" class="calendar" >
-          <mat-label>Vencimento</mat-label>
-          <input matInput [matDatepicker]="picker1" > <!-- disabled -->
+          <mat-label><b> Vencimento</b> </mat-label>
+          <input matInput [matDatepicker]="picker1" formControlName="dataVencimento" required > <!-- disabled -->
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1 ></mat-datepicker> <!-- disabled="false" -->
+          <mat-error *ngIf="lancamentoForm.controls.dataVencimento.hasError('required')">
+            Informe a data do vencimento 
+          </mat-error>
+          <mat-hint>Data atual</mat-hint>
         </mat-form-field>    
       
-        <mat-form-field  fxFlex="25" class="calendar" >
-          <mat-label>{{ tipos === 'RECEITA' ? 'Entrada' : 'Saída'}}</mat-label>
-          <input matInput [matDatepicker]="picker2">
+        <mat-form-field  fxFlex="25" class="calendar" >          
+          <mat-label><mat-icon>schedule_send </mat-icon> <b> {{ tipoLabel === 'RECEITA' ? 'Data de recebimento' : 'Data de pagamento' }}</b> </mat-label>
+          <input matInput [matDatepicker]="picker2" formControlName="dataPagamento" >
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2>
             <mat-datepicker-actions>
-              <button mat-button matDatepickerCancel>Cancel</button>
+              <button mat-button matDatepickerCancel>Cancelar</button>
               <button mat-raised-button color="primary" matDatepickerApply>Aplicar</button>
             </mat-datepicker-actions>
           </mat-datepicker>
@@ -33,53 +40,66 @@
       </div>
 
       <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" fxLayoutGap="30px" >
-        <mat-form-field fxFlex="70" class="full-width">
-          <mat-label>Descrição</mat-label>
-          <input matInput placeholder="7 tradição" value="" required >
+        <mat-form-field fxFlex="70" class="full-width">          
+          <mat-label><mat-icon>description </mat-icon><b> Descrição</b> </mat-label>
+          <input matInput placeholder="7 tradição" value="" formControlName="descricao" required >
+          <mat-error *ngIf="lancamentoForm.controls.descricao.errors?.required">
+            Informe a descrição 
+          </mat-error>
+          <mat-error *ngIf="lancamentoForm.controls.descricao.hasError('minlength')" >
+            Descrição deve ter {{ lancamentoForm.controls.descricao.errors.minlength.requiredLength }} caracteres.
+            Você digitou {{ lancamentoForm.controls.descricao.errors.minlength.actualLength }}  
+          </mat-error>
         </mat-form-field>
 
-        <mat-form-field fxFlex="30" class="full-width">
-          <mat-label>Valor</mat-label>
-          <input matInput placeholder="7 tradição" value="" required 
+        <mat-form-field fxFlex="30" class="full-width">          
+          <mat-label><mat-icon>attach_money </mat-icon><b> Valor</b> </mat-label>
+          <input matInput placeholder="7 tradição" value="" formControlName="valor" required 
             currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', precision: 2, allowNegative: false }" >
-        </mat-form-field>
+          <mat-error *ngIf="lancamentoForm.controls.valor.hasError('required')">
+            Informe o valor 
+          </mat-error>
+          </mat-form-field>
       </div>
 
       <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" fxLayoutGap="30px" >
         <mat-form-field fxFlex="50" class="full-width">
-          <mat-label>Categoria</mat-label>
-          <mat-select  required> <!-- [formControl]="animalControl"-->
+          <mat-label><mat-icon>category </mat-icon> <b> Categoria</b> </mat-label>
+          <mat-select  formControlName="categoria" required> <!-- [formControl]="animalControl"-->
             <mat-option *ngFor="let categoria of categorias" [value]="categoria.value">{{ categoria.label }}</mat-option>
           </mat-select>
-          <mat-error >Please choose an animal</mat-error> <!--*ngIf="animalControl.hasError('required')" -->
-          <!-- <mat-hint>{{animalControl.value?.sound}}</mat-hint> -->
+          <mat-error *ngIf="lancamentoForm.controls.categoria.hasError('required')">
+            Informe a categoria
+          </mat-error>         
         </mat-form-field>
         
         <mat-form-field fxFlex="50" class="full-width" >
-          <mat-label>Pessoa (required)</mat-label>
-          <select matNativeControl required > <!-- [formControl]="selectFormControl"-->
+          <mat-label><mat-icon>person </mat-icon> <b> Pessoa</b> <i> (required)</i></mat-label>
+          <select matNativeControl formControlName="pessoa" required > <!-- [formControl]="selectFormControl"-->
             <!-- <option label="-- selecione a pessoa --"></option> -->
             <option *ngFor="let pessoa of pessoas" [value]="pessoa.value">{{ pessoa.label }}</option>
             <!-- <option value="Roberto">Roberto</option>
             <option value="Mello">Mello</option> -->
           </select>
-          <mat-error > <!-- *ngIf="selectFormControl.hasError('required')" -->
-            This field is required
-          </mat-error>
-          <!-- <mat-hint>You can pick up your favorite car here</mat-hint> -->
+          <mat-error *ngIf="lancamentoForm.controls.pessoa.hasError('required')">
+            Informe seu nome 
+          </mat-error>          
         </mat-form-field>
       </div>
 
       <mat-form-field class="full-width" >
-        <mat-label>Observação</mat-label>
-        <textarea matInput></textarea>
+        <mat-label><b>Observação</b> </mat-label>
+        <textarea matInput formControlName="observacao" ></textarea>
       </mat-form-field>
-    </form> 
 
 
-    <button mat-raised-button color="primary" style="margin-right: 10px;">Salvar</button>
-    <button mat-stroked-button color="primary" style="margin-right: 10px;">Novo</button>
-    <a href="javascript:;">Voltar para a pesquisa</a>  
+
+      <button mat-raised-button color="primary" type="submit" style="margin-right: 10px; margin-top: 20px;">
+        Salvar      
+      </button>
+      <button mat-stroked-button color="primary" style="margin-right: 10px;">Novo</button>
+      <a href="javascript:;">Voltar para a pesquisa</a>  
+    </form>     
 
   </mat-card>
 
