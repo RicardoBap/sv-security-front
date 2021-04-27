@@ -6,6 +6,7 @@ import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos
 import { MaterialModule } from '../material.module';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    
+    FlexLayoutModule, 
+
     FormsModule,
     ReactiveFormsModule,
 
