@@ -15,19 +15,17 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { NgxMaskModule } from 'ngx-mask'
 
 import { NavbarComponent } from './navbar/navbar.component';
-import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
-import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
+import { LancamentosModule } from './lancamentos/lancamentos.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    LancamentosPesquisaComponent,    
-    PessoasPesquisaComponent,
-    LancamentoCadastroComponent,
+    
+    PessoasPesquisaComponent,    
     PessoaCadastroComponent
   ],
   imports: [
@@ -37,10 +35,12 @@ import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.compo
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    CurrencyMaskModule,
+    
     NgxMaskModule.forRoot(),
 
-    MaterialModule   
+    MaterialModule,
+    
+    LancamentosModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },    
