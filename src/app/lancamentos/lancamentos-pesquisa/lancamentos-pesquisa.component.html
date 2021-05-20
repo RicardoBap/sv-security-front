@@ -1,57 +1,49 @@
 <div class="container" >
 
-  <mat-card>
-    <h1>Lançamentos</h1>
+  <mat-card class="card-default" >
+    <h1> Lançamentos </h1>
+   
+    <form class="width-form" (ngSubmit)="pesquisar()" >
+      <mat-card-content>
+        <mat-form-field class="full-width" appearance="fill" >
+          <mat-label> Descrição </mat-label>
+          <input matInput placeholder="7 tradição" [formControl]="descricao" >
+        </mat-form-field>
 
-    <!-- <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start center" fxLayoutAlign.gt-sm="center start">
-      <div fxFlex="50%" fxFlex.gt-sm="75%">Item 1</div>
-      <div fxFlex="50%" fxFlex.gt-sm="25%">Item 2</div>
-    </div> -->
+        <mat-form-field appearance="fill" >
+          <mat-label> Insira um intervalo de datas </mat-label>
+          <mat-date-range-input [rangePicker]="picker" >
+            <input matStartDate [formControl]="dataVencimentoInicio" placeholder="Data inicio" >
+            <input matEndDate [formControl]="dataVencimentoFim" placeholder="Data até" >         
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+          <mat-date-range-picker #picker ></mat-date-range-picker>
+          </mat-form-field>
+      </mat-card-content>
 
-    <form class="width-form">
-      <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Descrição</mat-label>
-        <input matInput placeholder="7 tradição" value="">
-      </mat-form-field>
-
-      
-      <mat-form-field appearance="fill" >
-        <mat-label style="display: block">Data vencimento de</mat-label>
-        <input matInput [matDatepicker]="picker1" >
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
-      </mat-form-field>
-      até
-      <mat-form-field appearance="fill">
-        <mat-label>Data vencimento até</mat-label>
-        <input matInput [matDatepicker]="picker2">
-
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2></mat-datepicker>
-      </mat-form-field>
-    
+      <button mat-raised-button color="primary" type="submit" > Pesquisar </button>
+     
     </form>
 
-    <button mat-raised-button color="primary" type="submit">Pesquisar</button>
 
-    <div class="container-table mat-elevation-z8">
-      <mat-table #table [dataSource]="dataSource" >
+    <div class="container-table mat-elevation-z8" >
+      <mat-table #table [dataSource]="lancamentos" *ngIf="lancamentos.length > 0" >
 
         <!-- Tipo Column -->
         <ng-container matColumnDef="tipo">
           <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
-          <mat-cell *matCellDef="let element"> 
+          <mat-cell *matCellDef="let element" > 
             <span class="responsive-label">Tipo: </span>
-            {{element.tipo}} 
+             {{ element.tipo }}
           </mat-cell>
         </ng-container>
 
         <!-- Descrição Column -->
-        <ng-container matColumnDef="descricao">
-          <mat-header-cell *matHeaderCellDef> Descrição </mat-header-cell>
+        <ng-container matColumnDef="descricao" >
+          <mat-header-cell *matHeaderCellDef > Descrição </mat-header-cell>
           <mat-cell *matCellDef="let element"> 
-            <span class="responsive-label">Descrição:</span>
-            {{element.descricao}} 
+            <span class="responsive-label" >Descrição: </span>
+            {{ element.descricao }} 
           </mat-cell>
         </ng-container>
 
@@ -68,26 +60,28 @@
         <ng-container matColumnDef="dataPagamento">
           <mat-header-cell *matHeaderCellDef> Data Pagto. </mat-header-cell>
           <mat-cell *matCellDef="let element"> 
-            <span class="responsive-label">Data Pagto:</span>
+            <span class="responsive-label">Data Pagto: </span>
             {{element.dataPagamento | date:'dd/MM/yyyy'}} 
           </mat-cell>
         </ng-container>
 
         <!-- Valor Column -->
         <ng-container matColumnDef="valor">
-          <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
-          <mat-cell *matCellDef="let element"> 
-            <span class="responsive-label">Valor:</span>
-            {{element.valor | currency:'BRL':true:'1.2-2'}} 
+          <mat-header-cell *matHeaderCellDef > Valor </mat-header-cell>
+          <mat-cell *matCellDef="let element" > 
+            <span class="responsive-label" >Valor: </span>
+            <span [ngStyle]="{ color: element.tipo === 'DESPESA' ? 'red' : 'blue'}" >
+              {{element.valor | currency:'BRL' : symbol:'1.2-2'}} 
+            </span>
           </mat-cell>
         </ng-container>
 
         <!-- Pessoa Column -->
-        <ng-container matColumnDef="pessoa">
+        <ng-container matColumnDef="pessoa" >
           <mat-header-cell *matHeaderCellDef> Pessoa </mat-header-cell>
-          <mat-cell *matCellDef="let element"> 
-            <span class="responsive-label">Pessoa:</span>
-            {{element.pessoa}} 
+          <mat-cell *matCellDef="let element" > 
+            <span class="responsive-label">Pessoa: </span>
+            {{ element.pessoa }} 
           </mat-cell>
         </ng-container>
 
@@ -96,30 +90,46 @@
           <td mat-header-cell *matHeaderCellDef style="width: 80px;">  </td>
           <th *matCellDef="let element" > 
             <span class="responsive-label"> </span>
+            <a mat-icon-button color="primary" #tooltip="matTooltip"
+              matTooltip="Editar"
+              [matTooltipPosition]="position.value"
+              matTooltipHideDelay="500" [routerLink]="['/lancamentos', element.codigo]">
+              <mat-icon> edit </mat-icon>
+            </a>
             <button mat-icon-button color="warn" #tooltip="matTooltip"
               matTooltip="Excluir"
               [matTooltipPosition]="position.value"
-              matTooltipHideDelay="500">
-              <mat-icon>delete</mat-icon>
-            </button>
-            <button mat-icon-button color="primary" #tooltip="matTooltip"
-              matTooltip="Editar"
-              [matTooltipPosition]="position.value"
-              matTooltipHideDelay="500">
-              <mat-icon>edit</mat-icon>
-            </button>          
+              matTooltipHideDelay="500" (click)="excluir(element.codigo)" > <!-- (click)="excluir(element.codigo)" -->
+              <mat-icon> delete </mat-icon>
+            </button>                      
           </th>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
+       
+      </mat-table> 
 
-      <mat-paginator [pageSizeOptions]="[2, 4]" showFirstLastButtons></mat-paginator>
+      <p *ngIf="lancamentos.length === 0" 
+        style="color: red; text-align: center; margin-top: 10px;">
+        Não foram encontados registros para sua pesquisa 
+      </p>
+
+      <!-- <mat-paginator [pageSizeOptions]="[2, 4]" showFirstLastButtons></mat-paginator> -->
+      <mat-paginator 
+        (page)="handlePageEvent($event)"
+        [length]="length"
+        [pageSize]="pageSize"
+        [showFirstLastButtons]="showFirstLastButtons"
+        [pageSizeOptions]="pageSizeOptions"
+        [pageIndex]="pageIndex">
+      </mat-paginator>
+     
     </div>
 
-    <a mat-raised-button color="primary" routerLink=".">Novo lançamento</a>
-    <p>margim</p> 
+    <a mat-raised-button color="primary" routerLink="/lancamentos/novo" >
+       Novo lançamento
+    </a> 
   
   </mat-card>
 

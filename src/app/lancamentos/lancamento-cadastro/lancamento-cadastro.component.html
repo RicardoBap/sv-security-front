@@ -4,10 +4,10 @@
   
     <h1>Novo lançamento</h1>
 
-    <form [formGroup]="lancamentoForm" (ngSubmit)="submit()" >
+    <form [formGroup]="lancamentoForm" (ngSubmit)="salvar()">
 
       <div style="margin-bottom: 10px;"> 
-        <mat-button-toggle-group appearance="legacy" formControlName="tipos" 
+        <mat-button-toggle-group appearance="legacy" formControlName="tipo" 
           (change)="tipoLabel=$event.value" [value]="tipoLabel" >
           <mat-button-toggle value="RECEITA"><b>Receita</b></mat-button-toggle>
           <mat-button-toggle value="DESPESA"><b>Despesa</b></mat-button-toggle>
@@ -62,25 +62,22 @@
           </mat-form-field>
       </div>
 
-      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" fxLayoutGap="30px" >
-        <mat-form-field fxFlex="50" class="full-width">
+      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" fxLayoutGap="30px"  >
+        <mat-form-field *ngIf="simpleReqCategoriasObs | async as categorias" fxFlex="50" class="full-width" formGroupName="categoria" > <!-- formGroupName="categoria"-->
           <mat-label><mat-icon>category </mat-icon> <b> Categoria</b> </mat-label>
-          <mat-select  formControlName="categoria" required> <!-- [formControl]="animalControl"-->
-            <mat-option *ngFor="let categoria of categorias" [value]="categoria.value">{{ categoria.label }}</mat-option>
+          <mat-select  formControlName="codigo" required >
+            <mat-option *ngFor="let categoria of categorias" [value]="categoria.codigo">{{ categoria.nome }}</mat-option>
           </mat-select>
           <mat-error *ngIf="lancamentoForm.controls.categoria.hasError('required')">
             Informe a categoria
           </mat-error>         
         </mat-form-field>
         
-        <mat-form-field fxFlex="50" class="full-width" >
+        <mat-form-field *ngIf="simpleReqPessoasObs | async as pessoas" fxFlex="50" class="full-width" formGroupName="pessoa" > <!--formGroupName="pessoa"-->
           <mat-label><mat-icon>person </mat-icon> <b> Pessoa</b> <i> (required)</i></mat-label>
-          <select matNativeControl formControlName="pessoa" required > <!-- [formControl]="selectFormControl"-->
-            <!-- <option label="-- selecione a pessoa --"></option> -->
-            <option *ngFor="let pessoa of pessoas" [value]="pessoa.value">{{ pessoa.label }}</option>
-            <!-- <option value="Roberto">Roberto</option>
-            <option value="Mello">Mello</option> -->
-          </select>
+          <mat-select formControlName="codigo" required > 
+            <mat-option *ngFor="let pessoa of pessoas" [value]="pessoa.codigo">{{ pessoa.nome }}</mat-option>
+          </mat-select>
           <mat-error *ngIf="lancamentoForm.controls.pessoa.hasError('required')">
             Informe seu nome 
           </mat-error>          
@@ -97,8 +94,10 @@
       <button mat-raised-button color="primary" type="submit" style="margin-right: 10px; margin-top: 20px;">
         Salvar      
       </button>
-      <button mat-stroked-button color="primary" style="margin-right: 10px;">Novo</button>
-      <a href="javascript:;">Voltar para a pesquisa</a>  
+      <button mat-stroked-button color="primary" style="margin-right: 10px;" > 
+        Novo
+      </button>
+      <a routerLink="/lancamentos" > Voltar para a pesquisa </a>  
     </form>     
 
   </mat-card>

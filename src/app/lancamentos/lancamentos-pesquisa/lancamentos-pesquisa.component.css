@@ -1,3 +1,9 @@
+/* .card-default {
+  margin-top: 20px;
+  margin-bottom: 40px;
+} */
+
+
 .width-form {
   /* min-width: 150px;
   max-width: 500px; */
@@ -52,3 +58,4 @@ a {
 mat-cell:first-of-type, mat-header-cell:first-of-type, mat-footer-cell:first-of-type {
   padding-left: 10px;
 }
+

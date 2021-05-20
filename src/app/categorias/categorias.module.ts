@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DialogExclusionComponent } from './dialog-exclusion/dialog-exclusion.component';
+import { CategoriasService } from './categorias.service';
+
+
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule
+  ],
+  providers: [
+    CategoriasService
   ]
 })
-export class SharedModule { }
+export class CategoriasModule { }

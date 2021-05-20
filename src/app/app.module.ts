@@ -7,11 +7,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { RouterModule, Routes } from '@angular/router';
 import { CoreModule } from './core/core.module';
-import { LancamentosModule } from './lancamentos/lancamentos.module';
-import { PessoasModule } from './pessoas/pessoas.module';
-import { LancamentoService } from './lancamentos/lancamento.service';
 
+import { LancamentosPesquisaComponent } from './lancamentos/lancamentos-pesquisa/lancamentos-pesquisa.component';
+import { LancamentoCadastroComponent } from './lancamentos/lancamento-cadastro/lancamento-cadastro.component';
+import { PessoasPesquisaComponent } from './pessoas/pessoas-pesquisa/pessoas-pesquisa.component';
+import { LoginFormComponent } from './seguranca/login-form/login-form.component';
+
+import { ErrorInterceptorProvider } from './seguranca/interceptors/error-interceptor';
+import { AuthInterceptorProvider } from './seguranca/interceptors/auth-interceptor';
+
+const routes: Routes = [
+  { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },
+  // CRIAR PAGINA NAO ENCONTRADA
+  { path: 'lancamentos', component: LancamentosPesquisaComponent },
+  { path: 'lancamentos/novo', component: LancamentoCadastroComponent },
+  { path: 'lancamentos/:codigo', component: LancamentoCadastroComponent },
+  { path: 'pessoas', component: PessoasPesquisaComponent },
+  { path: 'login', component: LoginFormComponent }
+]
 
 @NgModule({
   declarations: [
@@ -19,16 +34,17 @@ import { LancamentoService } from './lancamentos/lancamento.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule, 
     HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(routes),
 
-    CoreModule,
-    
-    LancamentosModule,
-    PessoasModule
+    CoreModule
   ],
-  providers: [LancamentoService],
+  providers: [
+    AuthInterceptorProvider,
+    ErrorInterceptorProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

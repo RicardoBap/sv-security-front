@@ -6,9 +6,9 @@
 
 
 .mat-drawer {
-  background-color: #fff;
-  width: 150px;
-  color: rgba(0,0,0,.87);
+  background-color: #3e3e3e;
+  width: 50%;
+  color: #fff;   /*rgba(0,0,0,.87);*/
   position: fixed;
 }
 
@@ -19,4 +19,46 @@
   -webkit-overflow-scrolling: touch;
   display: block;
   overflow: hidden;
+}
+
+/* ************** MENU LATERAL ************ */
+.navbar-menu {
+  list-style: none;
+  padding-left: 0;
+}
+
+.navbar-usuario {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 20px;
+  color: #fff;
+  padding: 15px;
+  border-bottom: 1px solid #525151;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.navbar-menuitem {
+  padding: 15px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.navbar-menuitem a {
+  color: #c0bbb7;
+  text-decoration: none;
+}
+
+.navbar-menuitem a:hover {
+  color: #fff;
+}
+
+.navbar-menuitem.ativo {
+  background-color: #494541;
+}
+
+/* Botao de sair */
+.button-bottom-exit {
+  text-align: center;
+  padding-top: 50px;
 }

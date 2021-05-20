@@ -1,8 +1,11 @@
-<app-navbar></app-navbar>
+<app-navbar *ngIf="exibindoNavBar()" ></app-navbar> <!-- *ngIf="exibindoNavBar()"-->
 
+<router-outlet></router-outlet>
+
+<!-- <app-login-form></app-login-form> -->
 <!-- <app-pessoa-cadastro></app-pessoa-cadastro> -->
 <!-- <app-lancamento-cadastro></app-lancamento-cadastro> -->
-<app-lancamentos-pesquisa></app-lancamentos-pesquisa> 
+<!-- <app-lancamentos-pesquisa></app-lancamentos-pesquisa>  -->
 <!-- <app-pessoas-pesquisa></app-pessoas-pesquisa> -->
 
 <!-- <div class="container">

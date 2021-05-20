@@ -14,13 +14,9 @@ export class PessoaCadastroComponent implements OnInit {
   }
 
   pessoaForm = this.formBuilder.group({
-    nome: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-    logradouro: ['', [Validators.required]],
-    numero: ['', [Validators.required]],
-    complemento: ['', []],
-    bairro: ['', [Validators.required]],
+    nome: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],    
     telefone: ['', [Validators.required]],
-    cidade: ['', [Validators.required]],
+    email: ['', [Validators.required]],
     encargo: ['', [Validators.required]]
   })
 

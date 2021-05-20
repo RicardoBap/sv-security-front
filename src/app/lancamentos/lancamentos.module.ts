@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -10,15 +11,18 @@ import { MaterialModule } from '../core/material/material.module';
 
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
+import { DialogExclusionComponent } from '../shared/dialog-exclusion/dialog-exclusion.component';
 
 @NgModule({
   declarations: [
     LancamentosPesquisaComponent,
-    LancamentoCadastroComponent, 
+    LancamentoCadastroComponent,
+    DialogExclusionComponent
   ],
   imports: [
     CommonModule,
-    FlexLayoutModule, 
+    FlexLayoutModule,
+    RouterModule,
 
     FormsModule,
     ReactiveFormsModule,

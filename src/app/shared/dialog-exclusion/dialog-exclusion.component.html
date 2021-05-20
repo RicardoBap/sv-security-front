@@ -1,0 +1,17 @@
+<div>
+  <h1 mat-dialog-title> {{ data.message }} </h1>
+  <div mat-dialog-content>Após a exclusão de algum dado, é impossível reverter a operação.</div>
+  <div mat-dialog-actions>
+    <button mat-flat-button color="primary" [mat-dialog-close]="false" > Cancelar </button>
+    <button mat-stroked-button color="warn" [mat-dialog-close]="true" > Remover </button>
+  </div>
+</div>
+
+<!-- <div>
+  <div class="content-container">
+    <mat-icon id="close-icon"> close </mat-icon>
+    <span class="content-span full-width" >{{ data.message }}</span>
+  </div>
+  <button mat-flat-button id="no-button"> NO </button>
+  <button mat-flat-button id="yes-button"> YES </button>
+</div> -->

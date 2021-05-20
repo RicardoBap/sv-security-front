@@ -20,7 +20,7 @@
         </mat-form-field>       
       </div> 
 
-      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" fxLayoutGap="30px" >
+      <!-- <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" fxLayoutGap="30px" >
         <mat-form-field fxFlex="70" class="full-width" >
           <mat-label><b>Logradouro</b></mat-label>
           <input matInput placeholder="Av. Paulista" formControlName="logradouro" required >
@@ -37,32 +37,27 @@
             Informe o número
           </mat-error>
         </mat-form-field>
-      </div>
+      </div> -->
 
       <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" fxLayoutGap="30px" >
-        <mat-form-field fxFlex="33" class="full-width" >
-          <mat-label><b>Complemento</b></mat-label>
-          <input matInput placeholder="apto. 100" formControlName="complemento" >
-        </mat-form-field>
-
-        <mat-form-field fxFlex="33" class="full-width" >
-          <mat-label><b>Bairro</b></mat-label>
-          <input matInput placeholder="Bela Vista" formControlName="bairro" required >
-          <mat-error *ngIf="pessoaForm.controls.bairro.hasError('required')">
-            Informe o bairro
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field fxFlex="33" class="full-width" >
-          <mat-label><b>Telefone</b><i> (celular)</i></mat-label>
+        <mat-form-field fxFlex="50" class="full-width" >
+          <mat-label><b> Telefone </b><i> (celular)</i></mat-label>
           <input matInput mask="(00)00000-0000" placeholder="(00) 00000-0000" formControlName="telefone" required >
           <mat-error *ngIf="pessoaForm.controls.telefone.hasError('required')">
             Informe o número de telefone
           </mat-error>
         </mat-form-field>
+
+        <mat-form-field fxFlex="50" class="full-width" >
+          <mat-label><b> Email </b></mat-label>
+          <input matInput placeholder="alcoolicos@mail.com" formControlName="email" required >
+          <mat-error *ngIf="pessoaForm.controls.email.hasError('required')">
+            Informe o email
+          </mat-error>
+        </mat-form-field>
       </div>
 
-      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" fxLayoutGap="30px" >
+      <!-- <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" fxLayoutGap="30px" >
         <mat-form-field fxFlex="50" class="full-width" >
           <mat-label><b>Cidade</b></mat-label>
           <input matInput placeholder="São Paulo" formControlName="cidade" required >
@@ -78,7 +73,7 @@
             Informe o encargo
           </mat-error>
         </mat-form-field>
-      </div>
+      </div> -->
 
       <button mat-raised-button type="submit" color="primary" style="margin-right: 10px; margin-top: 20px;">
         Salvar

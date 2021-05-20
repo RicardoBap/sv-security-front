@@ -15,43 +15,52 @@
 
 
     <div class="container-table mat-elevation-z8">
-      <mat-table #table [dataSource]="dataSource" >
+      <mat-table #table [dataSource]="pessoas" >
   
-        <!-- Tipo Column -->
-        <ng-container matColumnDef="nome">
-          <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+        <!-- Nome Column -->
+        <ng-container matColumnDef="nome" >
+          <mat-header-cell *matHeaderCellDef > Nome </mat-header-cell>
           <mat-cell *matCellDef="let element"> 
-            <span class="responsive-label">Nome: </span>
-            {{element.nome}} 
+            <span class="responsive-label" > Nome: </span>
+            {{ element.nome }} 
           </mat-cell>
         </ng-container>
   
-        <!-- Descrição Column -->
-        <ng-container matColumnDef="telefone">
-          <mat-header-cell *matHeaderCellDef> Telefone </mat-header-cell>
-          <mat-cell *matCellDef="let element"> 
-            <span class="responsive-label">Telefone:</span>
-            {{element.telefone}} 
+        <!-- Telefone Column -->
+        <ng-container matColumnDef="telefone" >
+          <mat-header-cell *matHeaderCellDef > Telefone </mat-header-cell>
+          <mat-cell *matCellDef="let element" > 
+            <span class="responsive-label" > Telefone:</span>
+            {{ element.telefone }} 
           </mat-cell>
-        </ng-container>
-  
-        <!-- dataVencimento Column -->
-        <ng-container matColumnDef="encargo">
-          <mat-header-cell *matHeaderCellDef> Encargo </mat-header-cell>
-          <mat-cell *matCellDef="let element"> 
+        </ng-container>   
+        
+         <!-- Email Column -->
+         <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef > Email </mat-header-cell>
+          <mat-cell *matCellDef="let element" > 
+            <span class="responsive-label"> Email </span>
+            {{ element.email }} 
+          </mat-cell>
+        </ng-container>  
+
+        <!-- Encargo Column -->
+        <ng-container matColumnDef="encargo" >
+          <mat-header-cell *matHeaderCellDef > Encargo </mat-header-cell>
+          <mat-cell *matCellDef="let element" > 
             <span class="responsive-label">Encargo</span>
-            {{element.encargo}} 
+            {{ element.encargo }} 
           </mat-cell>
         </ng-container>
-  
-        <!-- dataPagamento Column -->
-        <ng-container matColumnDef="status">
-          <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-          <mat-cell *matCellDef="let element"> 
-            <span class="responsive-label">Status</span>
-            {{element.status}} 
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status" >
+          <mat-header-cell *matHeaderCellDef > Status </mat-header-cell>
+          <mat-cell *matCellDef="let element" > 
+            <span class="responsive-label" > Status</span>
+            {{ element.ativo }} 
           </mat-cell>
-        </ng-container>        
+        </ng-container>              
   
         <!-- Ação Column -->
         <ng-container matColumnDef="acao" >
@@ -62,13 +71,13 @@
               matTooltip="Excluir"
               [matTooltipPosition]="position.value"
               matTooltipHideDelay="500">
-              <mat-icon>delete</mat-icon>
+              <mat-icon> delete </mat-icon>
             </button>
             <button mat-icon-button color="primary" #tooltip="matTooltip"
               matTooltip="Editar"
               [matTooltipPosition]="position.value"
               matTooltipHideDelay="500">
-              <mat-icon>edit</mat-icon>
+              <mat-icon> edit </mat-icon>
             </button>          
           </th>
         </ng-container>

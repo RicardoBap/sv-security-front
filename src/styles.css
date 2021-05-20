@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-html, body {
+/* html, body {
   height: 100%;
-}
+} */
 
 body { 
   margin: 0;
@@ -14,3 +14,22 @@ body {
     margin: 0 auto;
   }
 }
+
+/* SNACK BAR */
+.snack_success {
+  background: #699B31;
+  font-weight: bold;
+  color: #1A260D;
+}
+
+.snack_ok {
+  background: orangered;
+  color: black;
+}
+
+.snack_error {
+  background: #9B3831;
+  font-weight: bold;
+  color: #FFE0E0;
+}
+
