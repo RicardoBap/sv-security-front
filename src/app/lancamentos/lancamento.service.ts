@@ -50,17 +50,19 @@ export class LancamentoService {
 
   adicionar(lancamento: Lancamento): Observable<any> {
     return this.http.post(`${this.lancamentosUrl}`, lancamento,      
-      { observe: 'response', responseType: 'text' }) //<--- necessário para o snackBar de error
+      { observe: 'response', responseType: 'text' }) //<--- necessário para o snackBar de error interceptor
   }
 
-  // excluir(codigo: any): Promise<void> {
-  //   console.log('service', codigo)
-  //   return this.http.delete(`${this.lancamentosUrl}/${codigo}`)
-  //     .toPromise()
-  //     .then(() => null)
-  // }  
+  buscarPeloCodigo(codigo: number): Observable<Lancamento> {
+    return this.http.get<Lancamento>(`${this.lancamentosUrl}/${codigo}`)
+  }
 
-  excluir(codigo: Lancamento) {
+  atualizar(lancamento: Lancamento, codigo: number): Observable<any> {
+    return this.http.put(`${this.lancamentosUrl}/${codigo}`, lancamento,
+    { observe: 'response', responseType: 'text' }) //<--- necessário para o snackBar de error interceptor
+  }
+
+  excluir(codigo: Lancamento): Observable<any> {
     return this.http.delete(`${this.lancamentosUrl}/${codigo}`)
   }
      
@@ -105,3 +107,17 @@ export class LancamentoService {
   //   }
   //   }
   // }
+
+
+
+
+  // private lancamentoSubject$: BehaviorSubject<Lancamento[]> = new BehaviorSubject<Lancamento[]>(null)
+  // private loaded: boolean = false;
+
+  // if(!this.loaded) {
+  //   this.http.get<any>(`${this.lancamentosUrl}/resumo`, { params })
+  //   .pipe(tap((lancamentos) => console.log(lancamentos)))
+  //     .subscribe(this.lancamentoSubject$)
+  //   this.loaded = true;
+  // }
+  // return this.lancamentoSubject$.asObservable();

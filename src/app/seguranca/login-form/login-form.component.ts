@@ -46,7 +46,7 @@ export class LoginFormComponent implements OnInit {
       error => {
         if(error.status == 0) {
           this.snackBar.open('Não conseguiu conectar no servidor', '', // Status = 0
-          { duration: 3000, panelClass: ['snack_error'] })
+          { duration: 1000, panelClass: ['snack_error'] })
           this.bLoading = false; //<------ DESATIVA PROGRESS BAR
         }
         // this.snackBar.open(error.error.message, error.status, // Forbidden - 403

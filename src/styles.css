@@ -17,18 +17,18 @@ body {
 
 /* SNACK BAR */
 .snack_success {
-  background: #699B31;
+  background: #335500;
   font-weight: bold;
-  color: #1A260D;
+  color: #FFE0E0;
 }
 
 .snack_ok {
-  background: orangered;
-  color: black;
+  background: #0055aa;
+  color: #FFE0E0;
 }
 
 .snack_error {
-  background: #9B3831;
+  background: #ff1111;
   font-weight: bold;
   color: #FFE0E0;
 }

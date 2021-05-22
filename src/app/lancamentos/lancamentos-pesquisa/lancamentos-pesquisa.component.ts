@@ -76,27 +76,10 @@ export class LancamentosPesquisaComponent implements OnInit {
       lancamentos => this.lancamentos = lancamentos ,
       error => {
         this.snackBar.open(error.error.error, error.error.status, // Not Found - 404
-        { duration: 3000, panelClass: ['snack_error'] })
+        { duration: 1000, panelClass: ['snack_error'] })
       }
     )
   }
-
-  // openDialog() {
-  //   this.dialog.open(DialogExclusionComponent);
-  // }
-
-  // excluir(codigo: Lancamento) {
-  //   this.lancamentoService.excluir(codigo).subscribe(
-  //     response => {        
-  //       this.snackBar.open('Not Content', '204', // Not Content - 204
-  //         { duration: 1000, panelClass: ['snack_success'] })
-  //       this.pesquisar();
-  //     },
-  //     error => {
-  //       console.log('Erro ao excluir')
-  //     }
-  //   )
-  // }
 
   excluir(codigo: Lancamento) {
     this.dialogService.openConfirmDialog('Deseja realmente excluir?')

@@ -31,8 +31,8 @@ import { DialogExclusionComponent } from '../shared/dialog-exclusion/dialog-excl
     CurrencyMaskModule    
   ],
   exports: [
-    LancamentosPesquisaComponent,
-    LancamentoCadastroComponent
+    // LancamentosPesquisaComponent,
+    // LancamentoCadastroComponent
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },    

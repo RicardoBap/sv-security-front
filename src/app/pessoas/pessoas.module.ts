@@ -26,8 +26,8 @@ import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.co
     NgxMaskModule.forRoot()    
   ],
   exports: [
-    PessoasPesquisaComponent,
-    PessoaCadastroComponent
+    // PessoasPesquisaComponent,
+    // PessoaCadastroComponent
   ]
 })
 export class PessoasModule { }

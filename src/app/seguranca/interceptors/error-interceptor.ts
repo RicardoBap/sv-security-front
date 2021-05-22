@@ -109,7 +109,7 @@ export class ErrorInterceptor implements HttpInterceptor {
   handleDefaultError(errorObj) {
     console.log(errorObj)    
     //this.snackBar.open('Erro not found', '404',   
-    this.snackBar.open(errorObj.error.message, errorObj.status, 
+    this.snackBar.open(errorObj.error[0].mensagemUsuario, errorObj.status, 
     { duration: 1000 , panelClass: ['snack_error']}); 
   }
 
