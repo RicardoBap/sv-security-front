@@ -17,6 +17,7 @@ import { LancamentoService } from '../lancamentos/lancamento.service';
 import { StorageService } from '../seguranca/storage.service';
 import { DialogExclusionComponent } from '../shared/dialog-exclusion/dialog-exclusion.component';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { Title } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
     LancamentoService,
     PessoaService,
     AuthService,
-    StorageService
+    StorageService,
+    Title
   ],
   entryComponents: [ DialogExclusionComponent ],
 })

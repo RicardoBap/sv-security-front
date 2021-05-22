@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { Title } from '@angular/platform-browser';
 
 import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { TooltipPosition } from '@angular/material/tooltip';
+import { MatDialog } from '@angular/material/dialog';
 
 import { Lancamento } from 'src/app/core/model/lancamento.model';
 import { DialogService } from 'src/app/shared/dialog.service';
@@ -31,9 +32,12 @@ export class LancamentosPesquisaComponent implements OnInit {
     private lancamentoService: LancamentoService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private dialogService: DialogService) { }
+    private dialogService: DialogService,
+    private title: Title  
+  ) { }
 
   ngOnInit(): void {
+    this.title.setTitle('Pesquisa de lançamentos')
     this.pesquisar();
   }
 

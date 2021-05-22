@@ -13,6 +13,7 @@ import { LancamentoService } from '../lancamento.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Lancamento } from 'src/app/core/model/lancamento.model';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -41,10 +42,12 @@ export class LancamentoCadastroComponent implements OnInit {
     private pessoaService: PessoaService,
     private categoriaService: CategoriasService,
     private lancamentoService: LancamentoService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private title: Title
   ) { }
 
   ngOnInit(): void {
+    this.title.setTitle('Novo lançamento')
     this.configurarFormulario();
     //console.log(this.route.snapshot.params['codigo'])
     const codigoLancamento = this.route.snapshot.params['codigo']
@@ -62,6 +65,7 @@ export class LancamentoCadastroComponent implements OnInit {
         this.lancamento = response
         console.log(this.lancamento)
         this.lancamentoForm.patchValue(this.lancamento)
+        this.atualizarTituloEdicao()
       }
     )
   } 
@@ -108,6 +112,7 @@ export class LancamentoCadastroComponent implements OnInit {
         this.lancamento = response
         //console.log('ATUALIZAR LANCAMENTO' + this.lancamento)
         this.lancamentoForm.patchValue(this.lancamento)
+        this.atualizarTituloEdicao();
         this.snackBar.open('OK', '200', 
         { duration: 1000, panelClass: ['snack_success'] })
       },
@@ -140,6 +145,10 @@ export class LancamentoCadastroComponent implements OnInit {
   private extractCodigo(location: string): string {
     let position = location.lastIndexOf('/');
     return location.substring(position + 1, location.length)
+  }
+
+  atualizarTituloEdicao() {
+    this.title.setTitle(`Edição: ${this.lancamentoForm.get('descricao').value}`)
   }
 
 }
