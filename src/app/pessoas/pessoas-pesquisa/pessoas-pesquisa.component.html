@@ -36,7 +36,7 @@
         </ng-container>   
         
          <!-- Email Column -->
-         <ng-container matColumnDef="email">
+         <ng-container matColumnDef="email" >
           <mat-header-cell *matHeaderCellDef > Email </mat-header-cell>
           <mat-cell *matCellDef="let element" > 
             <span class="responsive-label"> Email </span>
@@ -48,8 +48,8 @@
         <ng-container matColumnDef="encargo" >
           <mat-header-cell *matHeaderCellDef > Encargo </mat-header-cell>
           <mat-cell *matCellDef="let element" > 
-            <span class="responsive-label">Encargo</span>
-            {{ element.encargo }} 
+            <span class="responsive-label"> Encargo </span>
+            {{ element.encargos }} 
           </mat-cell>
         </ng-container>
 
@@ -67,18 +67,18 @@
           <td mat-header-cell *matHeaderCellDef style="width: 80px;">  </td>
           <th *matCellDef="let element" > 
             <span class="responsive-label"> </span>
-            <button mat-icon-button color="warn" #tooltip="matTooltip"
-              matTooltip="Excluir"
-              [matTooltipPosition]="position.value"
-              matTooltipHideDelay="500">
-              <mat-icon> delete </mat-icon>
-            </button>
             <button mat-icon-button color="primary" #tooltip="matTooltip"
               matTooltip="Editar"
               [matTooltipPosition]="position.value"
-              matTooltipHideDelay="500">
+              matTooltipHideDelay="200">
               <mat-icon> edit </mat-icon>
-            </button>          
+            </button>
+            <button mat-icon-button color="warn" #tooltip="matTooltip"
+              matTooltip="Excluir"
+              [matTooltipPosition]="position.value"
+              matTooltipHideDelay="200">
+              <mat-icon> delete </mat-icon>
+            </button>   
           </th>
         </ng-container>
   
@@ -89,8 +89,7 @@
       <mat-paginator [pageSizeOptions]="[2, 4]" showFirstLastButtons></mat-paginator>
     </div>
   
-    <a mat-raised-button color="primary" routerLink=".">Novo lançamento</a>
-    <p>margim</p>  
+    <a mat-raised-button color="primary" routerLink="/pessoas/nova">Nova Pessoa</a>
 
   </mat-card>
 

@@ -37,8 +37,9 @@ export class PessoasPesquisaComponent implements OnInit {
   position = new FormControl(this.positionOptions[0]);
 
   pesquisar() {
-    this.service.pesquisar()
-      .then(pessoas => this.pessoas = pessoas)
+    this.service.pesquisar().subscribe(
+      pessoas => this.pessoas = pessoas
+    )
   }
 
 }

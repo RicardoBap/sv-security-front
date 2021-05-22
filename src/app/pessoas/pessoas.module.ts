@@ -9,6 +9,7 @@ import { MaterialModule } from '../core/material/material.module';
 
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.co
   ],
   imports: [
     CommonModule,
-    FlexLayoutModule, 
+    FlexLayoutModule,
+    RouterModule,
 
     FormsModule,
     ReactiveFormsModule,

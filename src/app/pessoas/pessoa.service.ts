@@ -10,18 +10,17 @@ import { PessoaResumoModel } from '../core/model/pessoaResumoModel.model';
 })
 export class PessoaService {
 
-  pessoasUrl = "http://localhost:8080/pessoas"
+  readonly pessoasUrl = "http://localhost:8080/pessoas"
 
   constructor(private http: HttpClient) { }
 
+  // IMPLEMENTADO PARA CADASTRO DE LANCAMENTO ONDE REQUER PESSOA
   carregarPessoas(): Observable<PessoaResumoModel[]> {
     return this.http.get<PessoaResumoModel[]>(`${this.pessoasUrl}/resumo`)
   }
 
-  pesquisar(): Promise<any> {
+  pesquisar(): Observable<any> {
     return this.http.get(`${this.pessoasUrl}`)
-      .toPromise()
-      .then( response => response )
   }
 
   
