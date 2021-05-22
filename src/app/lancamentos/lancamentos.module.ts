@@ -12,6 +12,7 @@ import { MaterialModule } from '../core/material/material.module';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { DialogExclusionComponent } from '../shared/dialog-exclusion/dialog-exclusion.component';
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
 
 @NgModule({
   declarations: [
@@ -22,18 +23,16 @@ import { DialogExclusionComponent } from '../shared/dialog-exclusion/dialog-excl
   imports: [
     CommonModule,
     FlexLayoutModule,
-    RouterModule,
+    //RouterModule,
 
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
 
-    CurrencyMaskModule    
+    CurrencyMaskModule,
+    LancamentosRoutingModule   
   ],
-  exports: [
-    // LancamentosPesquisaComponent,
-    // LancamentoCadastroComponent
-  ],
+  exports: [],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },    
   ],

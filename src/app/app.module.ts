@@ -18,11 +18,10 @@ import { AuthInterceptorProvider } from './seguranca/interceptors/auth-intercept
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
+    BrowserAnimationsModule,    
 
-    CoreModule
+    CoreModule,
+    AppRoutingModule
   ],
   providers: [
     AuthInterceptorProvider,
