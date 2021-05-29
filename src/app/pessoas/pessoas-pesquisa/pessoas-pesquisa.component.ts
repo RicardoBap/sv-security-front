@@ -1,6 +1,8 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { TooltipPosition } from '@angular/material/tooltip';
 import { PessoaService } from '../pessoa.service';
@@ -14,15 +16,19 @@ import { PessoaService } from '../pessoa.service';
 export class PessoasPesquisaComponent implements OnInit {
 
   pessoas = []
+  novoStatus: boolean
 
-  constructor(private service: PessoaService) { }
+  constructor(
+    private service: PessoaService,
+    private snackBar: MatSnackBar    
+  ) { }
 
   ngOnInit(): void {
     this.pesquisar()
   }
 
   // TABELA
-  displayedColumns: string[] = ['nome', 'telefone', 'email', 'encargo', 'status', 'acao'];  
+  displayedColumns: string[] = ['nome', 'telefone', 'email', 'status', 'encargo', 'acao'];  
   dataSource = new MatTableDataSource(this.pessoas);
 
   // PAGINADOR
@@ -35,12 +41,35 @@ export class PessoasPesquisaComponent implements OnInit {
   // TOOLTIP
   positionOptions: TooltipPosition[] = ['above'];
   position = new FormControl(this.positionOptions[0]);
-
+  message: String
+ 
   pesquisar() {
     this.service.pesquisar().subscribe(
       pessoas => this.pessoas = pessoas
     )
+  }  
+
+  alternarStatus(pessoa: any) {
+    this.novoStatus = !pessoa.ativo;
+    //this.message = this.novoStatus ? 'desativar' : 'ativar'; // <--TOOLTIP
+
+    this.service.mudarStatus(pessoa.codigo, this.novoStatus).subscribe(
+      response => {
+
+        pessoa.ativo = this.novoStatus
+        this.pesquisar()  //<-----------atualiza o status       
+
+        this.snackBar.open('No Content', '204', 
+        { duration: 1000, panelClass: ['snack_success'] })
+      },
+      error => {
+        this.snackBar.open('Bad Request', '400', 
+        { duration: 1000, panelClass: ['snack_error'] })
+      }
+    )    
   }
+
+
 
 }
 

@@ -11,6 +11,7 @@ const routes: Routes = [
 
   { path: 'pessoas', component: PessoasPesquisaComponent },
   { path: 'pessoas/nova', component: PessoaCadastroComponent },
+  { path: 'pessoas/:codigo', component: PessoaCadastroComponent },
   { path: 'login', component: LoginFormComponent },
 
   { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },

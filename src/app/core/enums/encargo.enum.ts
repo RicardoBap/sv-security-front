@@ -1,0 +1,12 @@
+export enum Encargo {
+	
+	ADMIN = 1,
+	MEMBRO = 2,
+	RSG = 3,
+	SUPLENTE_RSG = 4,
+	TESOUREIRO = 5,
+	SUPLENTE_TESOUREIRO = 6,
+	SECRETARIO = 7,
+	SUPLENTE_SECRETARIO = 8
+
+}

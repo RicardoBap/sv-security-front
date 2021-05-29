@@ -4,7 +4,7 @@
 
     <h1>Nova pessoa</h1>
 
-    <form  [formGroup]="pessoaForm" (ngSubmit)="submit()" >
+    <form  [formGroup]="pessoaForm" (ngSubmit)="submit()" >  <!-- $event.preventDefault() -->
 
       <div>
         <mat-form-field class="full-width">
@@ -57,23 +57,53 @@
         </mat-form-field>
       </div>
 
-      <!-- <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" fxLayoutGap="30px" >
+      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" fxLayoutGap="30px" >
         <mat-form-field fxFlex="50" class="full-width" >
           <mat-label><b>Cidade</b></mat-label>
-          <input matInput placeholder="São Paulo" formControlName="cidade" required >
-          <mat-error *ngIf="pessoaForm.controls.cidade.hasError('required')">
+          <input matInput placeholder="São Paulo"  required >
+          <!-- <mat-error *ngIf="pessoaForm.controls.cidade.hasError('required')">
             Informe a cidade
-          </mat-error>
+          </mat-error> -->
         </mat-form-field>
 
         <mat-form-field fxFlex="50" class="full-width" >
-          <mat-label><b>Encargo</b></mat-label>
-          <input matInput placeholder="Secretário" formControlName="nome" required >
-          <mat-error *ngIf="pessoaForm.controls.encargo.hasError('required')">
-            Informe o encargo
-          </mat-error>
-        </mat-form-field>
-      </div> -->
+          <mat-label>Encargos</mat-label>
+          <mat-select multiple formArrayName="encargos" > <!-- [formControl]="encargos" -->
+            <mat-select-trigger >
+              {{encargos.value ? encargos.value[0] : ''}}
+              <span *ngIf="encargos.value?.length > 1" class="example-additional-selection">
+                (+{{encargos.value.length - 1}} {{encargos.value?.length === 2 ? 'other' : 'others'}})
+              </span>   <!-- *ngFor="let enc of encargos.controls; let i = index;" -->
+            </mat-select-trigger>
+            <mat-option *ngFor="let encargo of encargoLista" [value]="encargo" >{{ encargo }}</mat-option>
+          </mat-select> <!-- *ngFor="let encargo of encargoLista" [value]="encargo"  -->
+        </mat-form-field> <!-- [formControlName]='i' -->
+
+        <button mat-button type="button" color="primary" (click)="addEncargo()" >
+          <mat-icon> add </mat-icon>
+        </button>
+      </div>
+
+      <!-- <div>
+        <button mat-button type="button" color="primary" (click)="addPhone()" >
+          <mat-icon> add </mat-icon>
+        </button>
+        <ng-container formArrayName="encargos" >
+          <div *ngFor="let enc of encargos.controls; let i = index;"  >           
+              <mat-form-field   >
+                <input matInput type="text" placeholder="Codigo"  [formControlName]='i' >
+              </mat-form-field>
+          </div>
+        </ng-container>
+      </div>  -->
+
+      <!-- <section class="example-section" formArrayName="encargos" >
+        <ng-container *ngFor="let enc of encargos.controls; let i = index;" >
+          <mat-checkbox class="example-margin"  [formControlName]='i' >
+           
+          </mat-checkbox>
+        </ng-container>
+      </section> -->
 
       <button mat-raised-button type="submit" color="primary" style="margin-right: 10px; margin-top: 20px;">
         Salvar

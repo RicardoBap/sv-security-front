@@ -33,7 +33,7 @@ export class LancamentoCadastroComponent implements OnInit {
 
   codigoLancamento: string
 
-  @ViewChild('form') form: NgForm;
+  //@ViewChild('form') form: NgForm;
 
   constructor(
     private formBuilder: FormBuilder,

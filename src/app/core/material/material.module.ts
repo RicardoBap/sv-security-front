@@ -19,7 +19,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   imports: [],
@@ -40,6 +41,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatButtonToggleModule,
     MatProgressBarModule,
     MatDialogModule,
+    MatCheckboxModule,
+    MatChipsModule,
 
     MatDatepickerModule,
     MatNativeDateModule,

@@ -42,25 +42,34 @@
             <span class="responsive-label"> Email </span>
             {{ element.email }} 
           </mat-cell>
-        </ng-container>  
-
-        <!-- Encargo Column -->
-        <ng-container matColumnDef="encargo" >
-          <mat-header-cell *matHeaderCellDef > Encargo </mat-header-cell>
-          <mat-cell *matCellDef="let element" > 
-            <span class="responsive-label"> Encargo </span>
-            {{ element.encargos }} 
-          </mat-cell>
-        </ng-container>
+        </ng-container>         
 
         <!-- Status Column -->
         <ng-container matColumnDef="status" >
           <mat-header-cell *matHeaderCellDef > Status </mat-header-cell>
           <mat-cell *matCellDef="let element" > 
             <span class="responsive-label" > Status</span>
-            {{ element.ativo }} 
+            <mat-chip-listgit>            
+              <mat-chip (click)="alternarStatus(element)"
+                [color]="element.ativo == true ? 'primary' : 'none'" selected  
+                #tooltip="matTooltip"
+                [matTooltip]="element.ativo == true ? 'Desativar' : 'Ativar'"
+                [matTooltipPosition]="position.value"
+                matTooltipHideDelay="200" >
+                {{ element.ativo == true ? 'Ativo' : 'Inativo' }} 
+              </mat-chip>    
+            </mat-chip-list>
           </mat-cell>
-        </ng-container>              
+        </ng-container>      
+        
+         <!-- Encargo Column -->
+         <ng-container matColumnDef="encargo" >
+          <mat-header-cell *matHeaderCellDef > Encargo </mat-header-cell>
+          <mat-cell *matCellDef="let element" > 
+            <span class="responsive-label"> Encargo </span>
+            {{ element.encargos }} 
+          </mat-cell>
+        </ng-container>
   
         <!-- Ação Column -->
         <ng-container matColumnDef="acao" >
@@ -70,7 +79,7 @@
             <button mat-icon-button color="primary" #tooltip="matTooltip"
               matTooltip="Editar"
               [matTooltipPosition]="position.value"
-              matTooltipHideDelay="200">
+              matTooltipHideDelay="200" [routerLink]="['/pessoas', element.codigo]" >
               <mat-icon> edit </mat-icon>
             </button>
             <button mat-icon-button color="warn" #tooltip="matTooltip"
